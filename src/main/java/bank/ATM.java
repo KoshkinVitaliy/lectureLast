@@ -19,7 +19,7 @@ public class ATM {
     private void checkCardID(long inputCardID) {
         for (BankAccount account: Bank.bankAccountList) {
             if (account.getClient().getDebitCard().getCardID() == inputCardID) {
-                askPinCode(inputCardID);
+                askPinCode(account);
             }
             else {
                 System.out.println("Неверный номер карты. Попробуйте ещё.");
@@ -28,6 +28,13 @@ public class ATM {
         }
     }
 
-    private void askPinCode(long inputCardID) {
+    private void askPinCode(BankAccount account) {
+        Scanner scanner = new Scanner(System.in);
+        int inputPinCode = Integer.parseInt(scanner.nextLine());
+
+        if (account.getClient().getDebitCard().getPinCode() == inputPinCode) {
+            System.out.println("Добро пожаловать, "
+                    + account.getClient().getName() + "!");
+        }
     }
 }
