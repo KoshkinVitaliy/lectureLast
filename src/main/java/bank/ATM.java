@@ -3,6 +3,7 @@ package bank;
 import java.util.Scanner;
 
 public class ATM {
+    private Scanner scanner = new Scanner(System.in);
     public void takeCard() {
         showStartMenu();
     }
@@ -11,7 +12,7 @@ public class ATM {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите номер карты: ");
 
-        long inputCardID = Long.getLong(scanner.nextLine());
+        long inputCardID = Long.parseLong(scanner.nextLine());
 
         checkCardID(inputCardID);
     }
@@ -29,7 +30,7 @@ public class ATM {
     }
 
     private void askPinCode(BankAccount account) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите пин-код: ");
         int inputPinCode = Integer.parseInt(scanner.nextLine());
 
         if (account.getClient().getDebitCard().getPinCode() == inputPinCode) {
